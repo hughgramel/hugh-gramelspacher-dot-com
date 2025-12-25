@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Github, Mail } from 'lucide-react';
+import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
 import { FaXTwitter } from 'react-icons/fa6';
 
 export default function Home() {
@@ -32,12 +32,19 @@ export default function Home() {
             Feel free to reach out to me online!
           </p>
 
+          <div className="pt-2 clear-both">
+            <Link href="/journey" className="inline-flex items-center gap-2 group text-gray-600 hover:text-black transition-colors">
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="text-lg font-light">Hugh&apos;s Journey</span>
+            </Link>
+          </div>
+
           <div className="pt-4 flex flex-col items-start gap-4 text-gray-500 text-sm md:text-base clear-both">
 
 
             <div className="flex items-center space-x-6">
               <Link
-                href="https://linkedin.com/in/hugh-gramelspacher"
+                href="https://www.linkedin.com/in/hugh-gramelspacher"
                 target="_blank"
                 className="hover:text-black transition-colors"
                 aria-label="LinkedIn"
@@ -45,7 +52,7 @@ export default function Home() {
                 <Linkedin size={22} />
               </Link>
               <Link
-                href="https://x.com/hughgramel"
+                href="https://x.com/hughthebuilder"
                 target="_blank"
                 className="hover:text-black transition-colors"
                 aria-label="X (Twitter)"
@@ -61,7 +68,7 @@ export default function Home() {
                 <Github size={22} />
               </Link>
               <a
-                href="mailto:hgram007@uw.edu"
+                href="mailto:hughgramelspacher@gmail.com"
                 className="hover:text-black transition-colors"
                 aria-label="Email"
               >

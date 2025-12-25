@@ -19,7 +19,7 @@ export default function RootLayout({
         <Header />
         <div className="flex flex-col min-h-screen">
           <div className="pl-64"> {/* Added pl-64 wrapper */}
-            <main className="flex-1 w-full max-w-4xl px-20 py-20"> {/* Main padding remains px-12 py-20 as per snippet */}
+            <main className="flex-1 w-full max-w-7xl px-20 py-20"> {/* Main padding remains px-12 py-20 as per snippet */}
               {children}
             </main>
           </div>
