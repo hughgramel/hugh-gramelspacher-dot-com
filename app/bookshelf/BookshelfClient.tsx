@@ -74,7 +74,7 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
             <div className="grid lg:grid-cols-12 gap-12 items-start">
 
                 {/* LEFT COLUMN: Library Sections (7 cols) */}
-                <div className="lg:col-span-7 space-y-24">
+                <div className="lg:col-span-7 space-y-8">
                     {SECTIONS.map((section) => {
                         const sectionBooks = initialBooks.filter(
                             (book) => book.status_id === section.id
@@ -83,15 +83,15 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
                         if (sectionBooks.length === 0) return null;
 
                         return (
-                            <section key={section.id} className="space-y-8">
-                                <h2 className="text-2xl font-light tracking-tight border-b border-gray-100 pb-2 flex items-baseline">
+                            <section key={section.id} className="space-y-4">
+                                <h2 className="text-lg font-medium tracking-tight border-b border-gray-100 pb-2 flex items-baseline">
                                     {section.title}
-                                    <span className="text-2xl text-gray-400 ml-3 font-normal">
+                                    <span className="text-lg text-gray-400 ml-2 font-normal">
                                         ({sectionBooks.length})
                                     </span>
                                 </h2>
 
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-3">
                                     {sectionBooks.map((item, index) => {
                                         const authorName =
                                             item.book.cached_contributors?.[0]?.name ||
@@ -105,61 +105,61 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
                                         const progressPercent = totalPages > 0 ? Math.round((currentPage / totalPages) * 100) : 0;
 
                                         return (
-                                            <div key={index} className="group flex flex-col space-y-3">
+                                            <div key={index} className="group flex flex-col space-y-1.5">
                                                 {/* Cover */}
-                                                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-md bg-gray-100 shadow-sm text-center">
+                                                <div className="relative aspect-[2/3] w-full overflow-hidden rounded bg-gray-100 shadow-sm">
                                                     {item.book.image?.url ? (
                                                         <Image
                                                             src={item.book.image.url}
                                                             alt={item.book.title}
                                                             fill
                                                             className="object-cover"
-                                                            sizes="(max-width: 768px) 50vw, 33vw"
+                                                            sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 20vw"
                                                         />
                                                     ) : (
-                                                        <div className="absolute inset-0 flex items-center justify-center text-gray-300 text-xs uppercase tracking-widest">
-                                                            No Cover
+                                                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400 text-[10px] uppercase tracking-wide p-2 text-center leading-tight">
+                                                            {item.book.title}
                                                         </div>
                                                     )}
 
-                                                    {/* Hover Overlay for Review check (optional as we have sidebar now, but good to keep) */}
+                                                    {/* Hover Overlay for Review check */}
                                                     {item.review_raw && (
-                                                        <div className="absolute top-2 right-2 bg-black/60 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Has Review">
-                                                            <Quote size={12} fill="currentColor" />
+                                                        <div className="absolute top-1.5 right-1.5 bg-black/60 text-white p-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" title="Has Review">
+                                                            <Quote size={8} fill="currentColor" />
                                                         </div>
                                                     )}
                                                 </div>
 
                                                 {/* Text */}
                                                 <div className="flex flex-col">
-                                                    {/* Fixed height area for title (2 lines max) */}
-                                                    <h3 className="text-base font-medium leading-tight text-gray-900 line-clamp-2 group-hover:text-black h-[2.5rem]">
+                                                    {/* Fixed height for title */}
+                                                    <h3 className="text-xs font-medium leading-tight text-gray-900 line-clamp-1 h-[1rem]">
                                                         {item.book.title}
                                                     </h3>
-                                                    {/* Fixed height area for author (1 line) */}
-                                                    <p className="text-sm text-gray-500 line-clamp-1 h-[1.25rem]">{authorName}</p>
+                                                    {/* Fixed height for author */}
+                                                    <p className="text-[10px] text-gray-400 line-clamp-1 h-[0.875rem]">{authorName}</p>
 
                                                     {/* Progress bar for Currently Reading */}
                                                     {section.id === 2 && totalPages > 0 && (
-                                                        <div className="pt-2 space-y-1">
-                                                            <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                                        <div className="pt-1 space-y-0.5">
+                                                            <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
                                                                 <div
                                                                     className="h-full bg-emerald-500 rounded-full transition-all"
                                                                     style={{ width: `${progressPercent}%` }}
                                                                 />
                                                             </div>
-                                                            <p className="text-xs text-gray-400">
-                                                                {currentPage} / {totalPages} pages ({progressPercent}%)
+                                                            <p className="text-[9px] text-gray-400">
+                                                                {progressPercent}%
                                                             </p>
                                                         </div>
                                                     )}
 
                                                     {section.id === 3 && item.rating && (
-                                                        <div className="flex items-center gap-1 text-yellow-500 pt-1">
+                                                        <div className="flex items-center text-yellow-500 mt-0.5">
                                                             {Array.from({ length: 5 }).map((_, i) => (
                                                                 <span
                                                                     key={i}
-                                                                    className={`text-xs ${i < item.rating! ? 'opacity-100' : 'opacity-20'
+                                                                    className={`text-[8px] ${i < item.rating! ? 'opacity-100' : 'opacity-20'
                                                                         }`}
                                                                 >
                                                                     ★
@@ -184,23 +184,23 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
                 </div>
 
                 {/* RIGHT COLUMN: Reviews Sidebar (5 cols) */}
-                <div className="lg:col-span-5 space-y-8">
-                    <h2 className="text-2xl font-light tracking-tight border-b border-gray-100 pb-2">
+                <div className="lg:col-span-5 space-y-4">
+                    <h2 className="text-lg font-medium tracking-tight border-b border-gray-100 pb-2">
                         Reviews
                     </h2>
 
                     {reviews.length === 0 ? (
                         <p className="text-gray-400 text-sm">No written reviews yet.</p>
                     ) : (
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                             {reviews.map((item, idx) => {
-                                const isLongReview = (item.review_raw?.length || 0) > 280;
+                                const isLongReview = (item.review_raw?.length || 0) > 200;
 
                                 return (
-                                    <div key={idx} className={`bg-white p-6 rounded-xl group ${isLongReview ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => isLongReview && setSelectedBook(item)}>
-                                        <div className="flex gap-6">
+                                    <div key={idx} className={`bg-white p-4 rounded-lg group ${isLongReview ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => isLongReview && setSelectedBook(item)}>
+                                        <div className="flex gap-4">
                                             {/* Left: Book Cover */}
-                                            <div className="relative w-32 h-48 flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
+                                            <div className="relative w-16 h-24 flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
                                                 {item.book.image?.url && (
                                                     <Image src={item.book.image.url} fill alt="Cover" className="object-cover" />
                                                 )}
@@ -208,28 +208,28 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
 
                                             {/* Right: Content Stack */}
                                             <div className="flex-1 flex flex-col items-start min-w-0">
-                                                <h4 className="font-medium text-xl text-gray-900 leading-tight line-clamp-2 mb-1">{item.book.title}</h4>
+                                                <h4 className="font-medium text-sm text-gray-900 leading-tight line-clamp-1 mb-0.5">{item.book.title}</h4>
 
                                                 {item.rating && (
-                                                    <div className="flex items-center gap-0.5 text-yellow-500 mb-3">
+                                                    <div className="flex items-center text-yellow-500 mb-2">
                                                         {Array.from({ length: 5 }).map((_, i) => (
-                                                            <span key={i} className={`text-sm ${i < item.rating! ? 'opacity-100' : 'opacity-30'}`}>★</span>
+                                                            <span key={i} className={`text-[10px] ${i < item.rating! ? 'opacity-100' : 'opacity-30'}`}>★</span>
                                                         ))}
                                                     </div>
                                                 )}
 
-                                                <p className={`text-sm text-gray-600 leading-relaxed mb-4 flex-1 ${isLongReview ? 'line-clamp-4' : ''}`}>
+                                                <p className={`text-xs text-gray-600 leading-relaxed flex-1 ${isLongReview ? 'line-clamp-3' : ''}`}>
                                                     {item.review_raw}
                                                 </p>
 
-                                                <div className="flex flex-col items-start gap-2 mt-auto w-full">
-                                                    <span className="text-sm font-bold text-gray-400">
+                                                <div className="flex items-center justify-between mt-2 w-full">
+                                                    <span className="text-[10px] font-medium text-gray-400">
                                                         {formatDate(item.date_added)}
                                                     </span>
 
                                                     {isLongReview && (
-                                                        <span className="text-sm font-semibold text-black inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                                                            Read Full Review &rarr;
+                                                        <span className="text-[10px] font-semibold text-black group-hover:translate-x-0.5 transition-transform">
+                                                            Read more →
                                                         </span>
                                                     )}
                                                 </div>

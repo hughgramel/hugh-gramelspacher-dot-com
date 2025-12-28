@@ -1,4 +1,4 @@
-import MoviesClient, { UserMovie } from './MoviesClient';
+import MoviesClient, { UserMovie, UserReview } from './MoviesClient';
 
 interface TMDBMovie {
     id: number;
@@ -36,6 +36,17 @@ interface TraktWatchlistItem {
     listed_at: string;
     notes: string | null;
     type: string;
+    movie: TraktMovie;
+}
+
+interface TraktComment {
+    id: number;
+    comment: string;
+    spoiler: boolean;
+    review: boolean;
+    created_at: string;
+    updated_at: string;
+    user_rating: number | null;
     movie: TraktMovie;
 }
 
@@ -136,8 +147,35 @@ async function getMovies(): Promise<UserMovie[]> {
     return moviesWithPosters;
 }
 
+async function getReviews(): Promise<UserReview[]> {
+    const comments = await fetchTraktData<TraktComment>('comments/all/movies');
+
+    // Fetch poster paths for reviews
+    const reviewsWithPosters = await Promise.all(
+        comments.map(async (c) => ({
+            id: c.id,
+            comment: c.comment,
+            spoiler: c.spoiler,
+            review: c.review,
+            created_at: c.created_at,
+            rating: c.user_rating,
+            movie: {
+                title: c.movie.title,
+                year: c.movie.year,
+                slug: c.movie.ids.slug,
+                poster_path: await fetchTMDBPosterPath(c.movie.ids.tmdb),
+            },
+        }))
+    );
+
+    return reviewsWithPosters;
+}
+
 export default async function Movies() {
-    const movies = await getMovies();
+    const [movies, reviews] = await Promise.all([
+        getMovies(),
+        getReviews(),
+    ]);
 
     if (movies.length === 0) {
         return (
@@ -168,7 +206,7 @@ export default async function Movies() {
                 </p>
             </div>
 
-            <MoviesClient initialMovies={movies} />
+            <MoviesClient initialMovies={movies} reviews={reviews} />
         </div>
     );
 }
