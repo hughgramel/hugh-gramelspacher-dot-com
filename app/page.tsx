@@ -7,14 +7,27 @@ export default function Home() {
   return (
     <div className="space-y-8">
       <h1 className="text-4xl font-light tracking-tight mb-8">About</h1>
+
+      {/* Mobile: image on top */}
+      <div className="md:hidden flex justify-center mb-6">
+        <Image
+          src="/hugh-v2.png"
+          alt="Hugh Gramelspacher"
+          width={280}
+          height={280}
+          className="rounded-xl object-cover"
+          priority
+        />
+      </div>
+
       <div className="block">
-        <div className="relative float-right ml-8 mb-2 w-[280px]">
+        <div className="relative float-right ml-8 mb-2 w-[280px] hidden md:block">
           <Image
             src="/hugh-v2.png"
             alt="Hugh Gramelspacher"
             width={280}
             height={280}
-            className="rounded-xl object-cover grayscale-0"
+            className="rounded-xl object-cover"
             priority
           />
         </div>
