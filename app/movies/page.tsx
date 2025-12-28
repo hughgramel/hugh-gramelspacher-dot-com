@@ -148,27 +148,53 @@ async function getMovies(): Promise<UserMovie[]> {
 }
 
 async function getReviews(): Promise<UserReview[]> {
-    const comments = await fetchTraktData<TraktComment>('comments/all/movies');
+    const clientId = process.env.TRAKT_CLIENT_ID;
+    const username = process.env.TRAKT_USERNAME;
 
-    // Fetch poster paths for reviews
-    const reviewsWithPosters = await Promise.all(
-        comments.map(async (c) => ({
-            id: c.id,
-            comment: c.comment,
-            spoiler: c.spoiler,
-            review: c.review,
-            created_at: c.created_at,
-            rating: c.user_rating,
-            movie: {
-                title: c.movie.title,
-                year: c.movie.year,
-                slug: c.movie.ids.slug,
-                poster_path: await fetchTMDBPosterPath(c.movie.ids.tmdb),
+    if (!clientId || !username) {
+        return [];
+    }
+
+    try {
+        const res = await fetch(`https://api.trakt.tv/users/${username}/comments/all/movies?extended=full`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'trakt-api-version': '2',
+                'trakt-api-key': clientId,
             },
-        }))
-    );
+            next: { revalidate: 3600 },
+        });
 
-    return reviewsWithPosters;
+        if (!res.ok) {
+            console.error(`Trakt comments API error: ${res.status}`);
+            return [];
+        }
+
+        const comments: TraktComment[] = await res.json();
+
+        // Fetch poster paths for reviews
+        const reviewsWithPosters = await Promise.all(
+            comments.map(async (c) => ({
+                id: c.id,
+                comment: c.comment,
+                spoiler: c.spoiler,
+                review: c.review,
+                created_at: c.created_at,
+                rating: c.user_rating,
+                movie: {
+                    title: c.movie?.title || 'Unknown',
+                    year: c.movie?.year || 0,
+                    slug: c.movie?.ids?.slug || '',
+                    poster_path: c.movie?.ids?.tmdb ? await fetchTMDBPosterPath(c.movie.ids.tmdb) : null,
+                },
+            }))
+        );
+
+        return reviewsWithPosters;
+    } catch (error) {
+        console.error('Failed to fetch comments:', error);
+        return [];
+    }
 }
 
 export default async function Movies() {
