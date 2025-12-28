@@ -137,7 +137,7 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
                                                         {item.book.title}
                                                     </h3>
                                                     {/* Fixed height for author */}
-                                                    <p className="text-[10px] text-gray-400 line-clamp-1 h-[0.875rem]">{authorName}</p>
+                                                    <p className="text-[10px] font-medium text-gray-400 line-clamp-1 h-[0.875rem]">{authorName}</p>
 
                                                     {/* Progress bar for Currently Reading */}
                                                     {section.id === 2 && totalPages > 0 && (
@@ -200,7 +200,7 @@ export default function BookshelfClient({ initialBooks }: BookshelfClientProps) 
                                     <div key={idx} className={`bg-white p-4 rounded-lg group ${isLongReview ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => isLongReview && setSelectedBook(item)}>
                                         <div className="flex gap-4">
                                             {/* Left: Book Cover */}
-                                            <div className="relative w-16 h-24 flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
+                                            <div className="relative w-20 h-[7.5rem] flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
                                                 {item.book.image?.url && (
                                                     <Image src={item.book.image.url} fill alt="Cover" className="object-cover" />
                                                 )}

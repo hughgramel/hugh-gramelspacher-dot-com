@@ -120,7 +120,7 @@ export default function MoviesClient({ initialMovies, reviews }: MoviesClientPro
                                                         {movie.title}
                                                     </h3>
                                                     {/* Fixed height for year/date */}
-                                                    <p className="text-[10px] text-gray-400 line-clamp-1 h-[0.875rem]">
+                                                    <p className="text-[10px] font-medium text-gray-400 line-clamp-1 h-[0.875rem]">
                                                         {movie.year}
                                                     </p>
 
@@ -171,7 +171,7 @@ export default function MoviesClient({ initialMovies, reviews }: MoviesClientPro
                                     <div key={`${item.id}-${idx}`} className={`bg-white p-4 rounded-lg group ${isLongReview ? 'cursor-pointer' : 'cursor-default'}`} onClick={() => isLongReview && setSelectedReview(item)}>
                                         <div className="flex gap-4">
                                             {/* Left: Movie Poster */}
-                                            <div className="relative w-16 h-24 flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
+                                            <div className="relative w-20 h-[7.5rem] flex-shrink-0 bg-gray-200 rounded overflow-hidden shadow-sm">
                                                 {item.movie.poster_path && (
                                                     <Image src={`https://image.tmdb.org/t/p/w342${item.movie.poster_path}`} fill alt="Poster" className="object-cover" unoptimized />
                                                 )}

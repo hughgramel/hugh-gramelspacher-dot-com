@@ -7,11 +7,8 @@ const navItems = [
     { name: 'About', path: '/' },
     { name: 'Journey', path: '/journey' },
     { name: 'Projects', path: '/projects' },
-    { name: 'Journal', path: '/journal' },
     { name: 'Bookshelf', path: '/bookshelf' },
     { name: 'Movies', path: '/movies' },
-    { name: 'Lifting', path: '/lifting' },
-    { name: 'Analytics', path: '/analytics' },
 ];
 
 export default function Header() {
@@ -36,7 +33,7 @@ export default function Header() {
                         <Link
                             key={item.path}
                             href={item.path}
-                            className={`text-xl transition-colors text-black ${isActive
+                            className={`text-xl transition-colors ${isActive
                                 ? 'font-semibold'
                                 : 'hover:opacity-70'
                                 }`}

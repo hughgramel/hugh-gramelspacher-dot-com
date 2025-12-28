@@ -39,7 +39,7 @@ interface TraktWatchlistItem {
     movie: TraktMovie;
 }
 
-interface TraktComment {
+interface TraktCommentData {
     id: number;
     comment: string;
     spoiler: boolean;
@@ -47,6 +47,10 @@ interface TraktComment {
     created_at: string;
     updated_at: string;
     user_rating: number | null;
+}
+
+interface TraktCommentResponse {
+    comment: TraktCommentData;
     movie: TraktMovie;
 }
 
@@ -170,17 +174,17 @@ async function getReviews(): Promise<UserReview[]> {
             return [];
         }
 
-        const comments: TraktComment[] = await res.json();
+        const comments: TraktCommentResponse[] = await res.json();
 
         // Fetch poster paths for reviews
         const reviewsWithPosters = await Promise.all(
             comments.map(async (c) => ({
-                id: c.id,
-                comment: c.comment,
-                spoiler: c.spoiler,
-                review: c.review,
-                created_at: c.created_at,
-                rating: c.user_rating,
+                id: c.comment.id,
+                comment: c.comment.comment,
+                spoiler: c.comment.spoiler,
+                review: c.comment.review,
+                created_at: c.comment.created_at,
+                rating: c.comment.user_rating,
                 movie: {
                     title: c.movie?.title || 'Unknown',
                     year: c.movie?.year || 0,
@@ -228,7 +232,14 @@ export default async function Movies() {
                     >
                         Trakt
                     </a>{' '}
-                    API.
+                    API. Covers from{' '}
+                    <a
+                        href="https://www.themoviedb.org"
+                        target="_blank"
+                        className="underline decoration-1 underline-offset-4 hover:opacity-70"
+                    >
+                        TMDB
+                    </a>.
                 </p>
             </div>
 

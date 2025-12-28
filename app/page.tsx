@@ -20,13 +20,16 @@ export default function Home() {
         </div>
         <div className="text-lg leading-relaxed text-gray-800 space-y-6">
           <p>
-            I am a CS student at the University of Washington passionate about engineering software to improve people&#39;s lives through technology and innovation.
+            I am a CS student at the University of Washington passionate about how technology can reshape learning through startups, entrepreneurship, and building.
           </p>
           <p>
-            I am looking for Software Engineering internships and full-time opportunities, roles where I can grow as a developer, and projects that make a meaningful impact.
+            I originally came to UW to become a history teacher, inspired by my grandmother who taught for over 40 years. After taking my first programming course, I discovered a love for creative problem-solving and realized I could combine that skill set with my passion for education to build software that changes lives.
           </p>
           <p>
-            Outside of work, I enjoy reading and exploring historical literature, building side projects, experimenting with new technologies, and analyzing fantasy sports statistics. I also love movies, storytelling, and strategy games focused on historical periods, politics, warfare, and economic systems.
+            Currently, I&#39;m a Product Management Intern at Maximal Learning, an early-stage edtech startup revolutionizing how college students manage their daily lives and productivity. I&#39;m also building a 200+ member community centered around social accountability and focusing.
+          </p>
+          <p>
+            Outside of work, I enjoy reading historical literature, building side projects, and strategy games focused on history, politics, and economic systems. I also love movies and storytelling.
           </p>
           <p>
             Feel free to reach out to me online!
@@ -35,7 +38,7 @@ export default function Home() {
           <div className="pt-2 clear-both">
             <Link href="/journey" className="inline-flex items-center gap-2 group text-gray-600 hover:text-black transition-colors">
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              <span className="text-lg text-gray-800">Hugh&apos;s Journey</span>
+              <span className="text-lg text-gray-800">Journey</span>
             </Link>
           </div>
 

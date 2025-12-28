@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
+import { Inter_Tight } from 'next/font/google';
 import './globals.css';
 import Header from './components/Header';
 
+const interTight = Inter_Tight({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Hugh Gramelspacher',
@@ -15,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased text-black bg-white min-h-screen flex flex-col" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <body className={`${interTight.className} antialiased bg-white min-h-screen flex flex-col`}>
         <Header />
         <div className="flex flex-col min-h-screen">
           <div className="pl-64"> {/* Added pl-64 wrapper */}
