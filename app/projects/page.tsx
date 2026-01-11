@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaGithub } from 'react-icons/fa';
 import projectsData from '@/public/projects.json';
 
 function ProjectImages({ images, projectId }: { images: string[]; projectId: string }) {
@@ -35,12 +36,13 @@ export default function Projects() {
                             <Link
                                 href={project.url}
                                 target="_blank"
-                                className="underline underline-offset-2 hover:opacity-70"
+                                className="inline-flex items-center gap-2 hover:opacity-70"
                             >
+                                <FaGithub size={18} />
                                 {project.name}
                             </Link>
                         </h2>
-                        <p className="text-lg text-gray-600">
+                        <p className="text-lg text-gray-500 italic">
                             {project.description}
                         </p>
                         <p className="text-lg text-gray-700">
