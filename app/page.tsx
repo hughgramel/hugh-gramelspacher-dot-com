@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
-import { FaXTwitter } from 'react-icons/fa6';
 
 export default function Home() {
   return (
@@ -63,14 +62,6 @@ export default function Home() {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={22} />
-              </Link>
-              <Link
-                href="https://x.com/hughthebuilder"
-                target="_blank"
-                className="hover:text-black transition-colors"
-                aria-label="X (Twitter)"
-              >
-                <FaXTwitter size={22} />
               </Link>
               <Link
                 href="https://github.com/hughgramel"
