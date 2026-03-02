@@ -1,6 +1,14 @@
 {
   "projects": [
     {
+      "id": "donavelli",
+      "name": "Donavelli Creator Discovery Platform",
+      "url": "",
+      "description": "Full-stack platform for a merch creation and fulfillment startup to find and vet YouTube creators for partnerships using AI-driven analysis.",
+      "review": "Built a full-stack platform for Donavelli, a merch creation and fulfillment startup, to discover and vet YouTube creators for brand partnerships. Created a dashboard with caching, YouTube Data API integration, and enrichment from SocialBlade and ViewStats. Wrote an AI agent with LangChain that checks creators against ideal customer profiles and flags disqualifiers. Added batch processing, background jobs, saved filter presets, and a test suite for tracking agent accuracy.",
+      "images": []
+    },
+    {
       "id": "readfluent",
       "name": "ReadFluent",
       "url": "https://read-fluent.vercel.app/",
@@ -20,7 +28,7 @@
       "id": "study-together-bot",
       "name": "Study Together Bot",
       "url": "https://github.com/hughgramel/study-together-bot",
-      "description": "Discord bot used by 200+ UW students for coordinating study sessions and building accountability within the community.",
+      "description": "Discord bot serving 300+ active users for coordinating study sessions and building accountability within the community.",
       "review": "This project was simpler but it taught me a lot about integrating the Discord API with a database and cloud computing. It also taught me about image generation with a Discord bot. It was a fun project and I got to see a lot of people actually use it on my server.",
       "images": []
     },

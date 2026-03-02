@@ -33,19 +33,11 @@ export default function Home() {
         </div>
         <div className="text-lg leading-relaxed text-gray-800 space-y-6">
           <p>
-            I am a CS student at the University of Washington passionate about how technology can reshape learning through startups, entrepreneurship, and building.
+            I am a CS student at the University of Washington passionate about building software through startups, entrepreneurship, and creative problem-solving.
           </p>
           <p>
-            I originally came to UW to become a history teacher, inspired by my grandmother who taught for over 40 years. After taking my first programming course, I discovered a love for creative problem-solving and realized I could combine that skill set with my passion for education to build software that changes lives.
+            I originally came to UW to become a history teacher, inspired by my grandmother who taught for over 40 years. After taking my first programming course, I discovered a love for creative problem-solving and realized I could use that skill set to build software that changes lives.
           </p>
-          <div>
-            <p className="font-medium mb-3">Current Focus</p>
-            <ul className="list-disc space-y-2">
-              <li>Product Management Intern at Maximal Learning, an early-stage edtech startup looking to revolutionize how college students use software to manage their daily lives and productivity.</li>
-              <li>Building a 200+ community centered around social accountability and focusing, where social software augments productivity.</li>
-              <li>Focused on learning software engineering and improving my process in building high-quality, scalable applications.</li>
-            </ul>
-          </div>
           <p>
             Outside of work, I enjoy reading historical literature, building side projects, and strategy games focused on history, politics, and economic systems. I also love movies and storytelling.
           </p>
@@ -54,9 +46,9 @@ export default function Home() {
           </p>
 
           <div className="pt-2 clear-both">
-            <Link href="/journey" className="inline-flex items-center gap-2 group text-gray-600 hover:text-black transition-colors">
+            <Link href="/story" className="inline-flex items-center gap-2 group text-gray-600 hover:text-black transition-colors">
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              <span className="text-lg text-gray-800">Journey</span>
+              <span className="text-lg text-gray-800">Story</span>
             </Link>
           </div>
 
