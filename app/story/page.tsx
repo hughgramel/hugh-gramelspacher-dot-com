@@ -66,7 +66,7 @@ export default function Story() {
                     </div>
                     <div>
                         <Link
-                            href="https://read-fluent.vercel.app/"
+                            href="https://github.com/hughgramel/read-fluent"
                             target="_blank"
                             className="underline underline-offset-2 hover:opacity-70"
                         >

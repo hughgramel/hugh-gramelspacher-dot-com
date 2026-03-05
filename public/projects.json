@@ -11,7 +11,7 @@
     {
       "id": "readfluent",
       "name": "ReadFluent",
-      "url": "https://read-fluent.vercel.app/",
+      "url": "https://github.com/hughgramel/read-fluent",
       "description": "AI-powered language learning app with EPUB support. Read books in your target language with instant translations and vocabulary tracking.",
       "review": "This project was extremely fun because I got to use it myself pretty consistently, which really drove my progress. It came from a need for a tool that Migaku, one of the language learning apps I used, didn't have: a reader. I made an app that works on your phone or computer and takes EPUBs or other formats like Markdown and text. It shows which words are marked as known, tracking, or unknown. When you click on a word you can save the sentence, use AI to see the definition in context, use the Wiktionary definition if you don't want to use AI, or get a sentence explanation. It taught me a lot about rate limiting, working with Wiktionary, converting and saving EPUBs, and using AI integrations like Gemini. I plan on continuing this project soon, integrating it with YouTube, and releasing it since its main alternatives, Migaku and LingQ, are paid tools.",
       "images": []
